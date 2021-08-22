@@ -7,11 +7,18 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted() {
+    let url = "http://127.0.0.1:8083/user/sayHello";
+    axios.get(url).then((res)=>{
+        console.log(res,"res..........")
+    })
   }
 }
 </script>
