@@ -1,5 +1,5 @@
 <template>
-
+  <div>AliPay</div>
 </template>
 
 <script>
