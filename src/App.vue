@@ -7,7 +7,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-// import axios from 'axios'
+import axios from 'axios'
 import jsonp from 'jsonp'
 export default {
   name: 'App',
@@ -20,11 +20,16 @@ export default {
     //     console.log(res,"res..........")
     // })
 
-    let url = "https://www.imooc.com/activity/servicetime";
+    let url = "/api/activity/servicetime";
     jsonp(url,(err,res)=>{
       let result = res;
+      console.log(res,"jsonp-result-proxy")
       this.data = result;
     })
+    axios.get(url).then((res)=>{
+        console.log(res,"axiox-result-proxy")
+    })
+
   }
 }
 </script>
