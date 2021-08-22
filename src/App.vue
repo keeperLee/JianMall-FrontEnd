@@ -1,34 +1,14 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import axios from 'axios'
-import jsonp from 'jsonp'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  },
+  components: {},
   mounted() {
-    // let url = "http://127.0.0.1:8083/user/sayHello";
-    // axios.get(url).then((res)=>{
-    //     console.log(res,"res..........")
-    // })
-
-    let url = "/api/activity/servicetime";
-    jsonp(url,(err,res)=>{
-      let result = res;
-      console.log(res,"jsonp-result-proxy")
-      this.data = result;
-    })
-    axios.get(url).then((res)=>{
-        console.log(res,"axiox-result-proxy")
-    })
 
   }
 }
