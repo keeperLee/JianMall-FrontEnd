@@ -24,7 +24,7 @@ export default {
     //   this.res = res;
     // });
     //通过easymock平台
-    this.$axios.get('/mock/user/login.json').then(res=>{
+    this.$axios.get('/user/login').then(res=>{
       this.res = res;
     });
   }
