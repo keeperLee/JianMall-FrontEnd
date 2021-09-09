@@ -6,6 +6,10 @@ import axios from 'axios'
 //根据前端的跨域方式做调整
 axios.defaults.baseURL = '';
 axios.defaults.timeout = 8000;
+const mock = true;
+if(mock){
+
+}
 //更具环境变量获取不同的请求地址
 // axios.defaults.baseURL = env.baseURL;
 //接口错误拦截
