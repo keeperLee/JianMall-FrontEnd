@@ -5,19 +5,28 @@
 </template>
 
 <script>
-import storage from './storage'
+// import storage from './storage'
 
 export default {
   name: 'App',
   components: {},
   data(){
     return {
-      a:''
+      a:'',
+      res:{}
     }
   },
   mounted() {
     // storage.setItem("abcd",0,"user");
-    storage.clear("user");
+    // storage.clear("user");
+    // 本地加载请求静态json文件的形式
+    // this.$axios.get('/mock/user/login.json').then(res=>{
+    //   this.res = res;
+    // });
+    //通过easymock平台
+    this.$axios.get('/mock/user/login.json').then(res=>{
+      this.res = res;
+    });
   }
 }
 </script>
