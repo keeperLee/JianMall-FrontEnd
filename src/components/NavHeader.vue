@@ -37,7 +37,12 @@
             </div>
           </div>
         </div>
-        <div class="header-search"></div>
+        <div class="header-search">
+          <div class="wrapper">
+            <input type="text" name="keyword">
+            <a href="javascript:;"></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -51,6 +56,7 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/scss/base.scss";
+@import "../assets/scss/mixin.scss";
 
 .header {
   .nav-topbar {
@@ -60,9 +66,7 @@ export default {
     color: #B0B0B0;
 
     .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex();
 
       a {
         display: inline-block;
@@ -77,11 +81,7 @@ export default {
         color: #ffffff;
 
         .icon-cart {
-          display: inline-block;
-          width: 16px;
-          height: 12px;
-          background: url("/imgs/icon-cart-checked.png") no-repeat center;
-          background-size: contain;
+          @include bgImg(16px,12px,"/imgs/icon-cart-checked.png");
           margin-right: 4px;
         }
       }
@@ -91,9 +91,8 @@ export default {
   .nav-header {
     .container {
       height: 112px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex();
+
 
       .header-logo {
         display: inline-block;
@@ -108,21 +107,13 @@ export default {
 
           &:before {
             content: '';
-            width: 55px;
-            height: 55px;
-            display: inline-block;
-            background: url("/imgs/mi-logo.png") no-repeat center;
-            background-size: 55px;
+            @include bgImg(55px,55px,"/imgs/mi-logo.png",55px) ;
             transition: margin .2s;
           }
 
           &:after {
             content: '';
-            width: 55px;
-            height: 55px;
-            display: inline-block;
-            background: url("/imgs/mi-home.png") no-repeat center;
-            background-size: 55px;
+            @include bgImg(55px,55px,"/imgs/mi-logo.png",55px) ;
           }
 
           &:hover:before {
@@ -133,18 +124,41 @@ export default {
       }
       .header-menu{
         display: inline-block;
-        width: 200px;
+        width: 643px;
         padding-left: 209px;
         .item-menu{
           display: inline-block;
           color: #333333;
           font-size: 16px;
           line-height: 112px;
+          margin-right: 20px;
           span{
             cursor: pointer;
           }
           &:hover{
 
+          }
+        }
+      }
+      .header-search{
+        width: 319px;
+        .wrapper{
+          height: 50px;
+          border: 1px solid #E0E0E0;
+          display: flex;
+          align-items: center;
+          input{
+            box-sizing: border-box;
+            border:none;
+            border-right: 1px solid #E0E0E0;
+            width: 264px;
+            height: 50px;
+            padding-left: 14px;
+          }
+          a{
+            display: inline-block;
+            @include bgImg(18px,18px,"/imgs/icon-search.png") ;
+            margin-left: 17px;
           }
         }
       }
