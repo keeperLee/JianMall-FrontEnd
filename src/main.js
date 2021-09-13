@@ -7,7 +7,7 @@ import axios from 'axios'
 axios.defaults.baseURL = '/api';
 axios.defaults.timeout = 8000;
 //mock开关
-const mock = true;
+const mock = false;
 if(mock){
     require('./mock/api')
 }

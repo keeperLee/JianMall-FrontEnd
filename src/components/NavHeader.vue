@@ -9,9 +9,10 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="topbar-user">
-          <a href="javascript:;">登录</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;" class="my-cart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" v-if="userName">{{userName}}</a>
+          <a href="javascript:;" v-if="!userName" @click="login">登录</a>
+          <a href="javascript:;" v-if="userName">我的订单</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
         </div>
       </div>
     </div>
@@ -23,6 +24,22 @@
         <div class="header-menu">
           <div class="item-menu">
             <span>小米手机</span>
+            <div class="children">
+              <ul>
+                <li class="product" v-for="(item,index) in phoneList" :key="index">
+                  <a :href="'/#product/' + item.id" target="_blank">
+                    <div class="pro-img">
+                      <img :src="item.mainImage" :alt="item.subtitle">
+                    </div>
+                    <div class="pro-name">{{item.name}}</div>
+                    <div class="pro-price">{{item.price | currency}}</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="item-menu">
+            <span>RedMI红米</span>
             <div class="children">
               <ul>
                 <li class="product">
@@ -83,13 +100,64 @@
             </div>
           </div>
           <div class="item-menu">
-            <span>RedMI红米</span>
-            <div class="children">
-            </div>
-          </div>
-          <div class="item-menu">
             <span>电视</span>
             <div class="children">
+              <ul>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                    </div>
+                    <div class="pro-name">小米壁画电视 65英寸</div>
+                    <div class="pro-price">6999元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-2.jpg" alt="">
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-4.jpg" alt="">
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-5.jpg" alt="">
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799元</div>
+                  </a>
+                </li>
+                <li class="product">
+                  <a href="" target="_blank">
+                    <div class="pro-img">
+                      <img src="/imgs/nav-img/nav-3-6.png" alt="">
+                    </div>
+                    <div class="pro-name">小米CC9</div>
+                    <div class="pro-price">1799元</div>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -106,7 +174,41 @@
 
 <script>
 export default {
-  name: "nav-header"
+  name: "nav-header",
+  data(){
+    return {
+      userName:'jack',
+      phoneList: []
+    }
+  },
+  filters:{
+    currency(val){
+      if(!val) return '0.00';
+      return '￥' + val.toFixed(2) + '元'
+    }
+  },
+  mounted(){
+    this.getProductList();
+  },
+  methods:{
+    login(){
+      this.$router.push('/login')
+    },
+    getProductList(){
+      this.$axios.get('/products',{
+        params:{
+          categoryId:'100012'
+        }
+      }).then((res)=>{
+        if(res.list.length > 6){
+          this.phoneList = res.list.slice(0,6);
+        }
+      })
+    },
+    goToCart(){
+      this.$router.push('/cart')
+    }
+  }
 }
 </script>
 
@@ -212,6 +314,7 @@ export default {
             overflow: hidden;
             border-top: 1px solid #E5E5E5;
             box-shadow: 0px  7px 6px 0px rgba(0,0,0,0.11);
+            transition: height .5s;
 
             .product{
               position: relative;
