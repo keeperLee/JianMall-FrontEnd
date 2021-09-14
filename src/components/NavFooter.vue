@@ -42,6 +42,7 @@ export default {
       a{
         color:#999999;
         display: inline-block;
+        margin-bottom: 16px;
       }
       span{
         margin:0 10px;
