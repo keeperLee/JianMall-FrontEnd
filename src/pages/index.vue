@@ -8,10 +8,10 @@
               <a href="javascript:;">手机 电话卡</a>
               <div class="children">
                 <ul v-for="(item,index) in menuList" :key="index">
-                  <li v-for="(sub,idx) in item" :key="idx" >
+                  <li v-for="(sub,idx) in item" :key="idx">
                     <a :href="sub ? '/#/product/' + sub.id : ''">
                       <img :src="sub.img || '/imgs/item-box-1.png'" alt="">
-                      {{sub ? sub.name : '小米9'}}
+                      {{ sub ? sub.name : '小米9' }}
                     </a>
                   </li>
                 </ul>
@@ -51,10 +51,37 @@
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="/imgs/banner-1.png" >
+          <img src="/imgs/banner-1.png">
         </a>
       </div>
-      <div class="product-box"></div>
+    </div>
+    <div class="product-box">
+      <div class="container">
+        <h2>手机</h2>
+        <div class="wrapper">
+          <div class="banner-left">
+            <a href="#/product/35">
+              <img src="/imgs/mix-alpha.jpg" alt="">
+            </a>
+          </div>
+          <div class="list-box">
+            <div class="list" v-for="(arr,i) in phoneList" :key="i">
+              <div class="item" v-for="(item,j) in arr" :key="j">
+                <span>新品</span>
+                <div class="item-img">
+                  <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6f2493e6c6fe8e2485c407e5d75e3651.jpg" alt="">
+                </div>
+                <div class="item-info">
+                  <h3>小米9</h3>
+                  <p>晓龙855,索尼4800万超广角微距</p>
+                  <p class="price">2999元</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <service-bar></service-bar>
   </div>
@@ -111,52 +138,53 @@ export default {
       ],
       menuList: [
         [
-            {
-              id: 30,
-              img:'/imgs/item-box-1.png',
-              name:'小米CC9'
-            },
+          {
+            id: 30,
+            img: '/imgs/item-box-1.png',
+            name: '小米CC9'
+          },
           {
             id: 31,
-            img:'/imgs/item-box-2.png',
-            name:'小米CC9'
+            img: '/imgs/item-box-2.png',
+            name: '小米CC9'
           },
           {
             id: 32,
-            img:'/imgs/item-box-3.jpg',
-            name:'小米CC9'
+            img: '/imgs/item-box-3.jpg',
+            name: '小米CC9'
           },
           {
             id: 33,
-            img:'/imgs/item-box-4.jpg',
-            name:'小米CC9'
+            img: '/imgs/item-box-4.jpg',
+            name: '小米CC9'
           },
 
         ],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
-        [0,0,0,0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
       ],
-      adsList:[
+      adsList: [
         {
-          id:33,
-          img:'/imgs/ads/ads-1.png'
+          id: 33,
+          img: '/imgs/ads/ads-1.png'
         },
         {
-          id:48,
-          img:'/imgs/ads/ads-2.jpg'
+          id: 48,
+          img: '/imgs/ads/ads-2.jpg'
         },
         {
-          id:45,
-          img:'/imgs/ads/ads-3.png'
+          id: 45,
+          img: '/imgs/ads/ads-3.png'
         },
         {
-          id:47,
-          img:'/imgs/ads/ads-4.jpg'
+          id: 47,
+          img: '/imgs/ads/ads-4.jpg'
         },
-      ]
+      ],
+      phoneList: [[1, 1, 1, 1], [1, 1, 1, 1]]
     }
   }
 }
@@ -174,7 +202,7 @@ export default {
       width: 264px;
       height: 451px;
       z-index: 9;
-      padding: 26px;
+      padding: 26px 0;
       background-color: #55585A7A;
       box-sizing: border-box;
 
@@ -182,6 +210,7 @@ export default {
         .menu-item {
           height: 50px;
           line-height: 50px;
+
           a {
             position: relative;
             font-size: 16px;
@@ -197,30 +226,35 @@ export default {
               @include bgImg(10px, 15px, '/imgs/icon-arrow.png');
             }
           }
-          .children{
+
+          .children {
             display: none;
             width: 962px;
             height: 451px;
             background-color: $colorG;
             position: absolute;
-            top:0;
-            left :264px;
-            border:1px solid $colorH;
-            ul{
+            top: 0;
+            left: 264px;
+            border: 1px solid $colorH;
+
+            ul {
               display: flex;
               justify-content: space-between;
               height: 75px;
-              li{
+
+              li {
                 height: 75px;
                 line-height: 75px;
                 flex: 1;
                 padding-left: 23px;
               }
-              a{
-                color:$colorB;
-                font-size:14px;
+
+              a {
+                color: $colorB;
+                font-size: 14px;
               }
-              img{
+
+              img {
                 width: 42px;
                 height: 35px;
                 vertical-align: middle;
@@ -229,10 +263,10 @@ export default {
             }
           }
 
-
           &:hover {
             background-color: $colorA;
-            .children{
+
+            .children {
               display: block;
             }
           }
@@ -253,18 +287,104 @@ export default {
       }
     }
   }
-  .ads-box{
+
+  .ads-box {
     @include flex();
     margin-top: 14px;
     margin-bottom: 31px;
-    a{
+
+    a {
       width: 296px;
       height: 167px;
     }
 
   }
-  .banner{
+
+  .banner {
     margin-bottom: 50px;
+  }
+
+
+  .product-box {
+    background-color: $colorJ;
+    padding: 30px 0 50px;
+
+    h2 {
+      font-size: $fontF;
+      height: 21px;
+      line-height: 21px;
+      margin-bottom: 20px;
+    }
+
+    .wrapper {
+      display: flex;
+
+      .banner-left {
+        margin-right: 16px;
+
+        img {
+          width: 224px;
+          height: 619px;
+        }
+      }
+
+      .list-box {
+        .list {
+          @include flex();
+          width: 986px;
+          margin-bottom: 14px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .item {
+            width: 236px;
+            height: 302px;
+            background-color: $colorG;
+            text-align: center;
+
+            span {
+
+            }
+
+            .item-img {
+              img {
+                height: 195px;
+              }
+            }
+
+            .item-info {
+              h3 {
+                font-size: $fontJ;
+                color: $colorB;
+                line-height: $fontJ;
+                font-weight: bold;
+              }
+
+              p {
+                color: $colorD;
+                line-height: 13px;
+                margin: 6px auto 13px;
+              }
+
+              .price {
+                color: #F20A0A;
+                font-size: $fontJ;
+                font-weight: bold;
+                cursor: pointer;
+
+                &:after {
+                  @include bgImg(22px, 22px, '/imgs/icon-cart-hover.png');
+                  content: '';
+                  vertical-align: middle;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
