@@ -72,9 +72,9 @@
                   <img :src="item.mainImage" alt="">
                 </div>
                 <div class="item-info">
-                  <h3>{{item.name}}</h3>
-                  <p>{{item.subtitle}}</p>
-                  <p class="price">{{item.price}}元</p>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.subtitle }}</p>
+                  <p class="price" @click="addCart(item.id)">{{ item.price }}元</p>
                 </div>
               </div>
             </div>
@@ -84,17 +84,30 @@
 
     </div>
     <service-bar></service-bar>
+    <modal title="提示"
+           sure-text="查看购物车"
+           btnType="1"
+           modalType="middle"
+           :showModal="showModal"
+           v-on:submit="goToCart"
+           v-on:cancel="showModal=false"
+    >
+      <template v-slot:body>
+        <p>商品添加成功!</p>
+      </template>
+    </modal>
   </div>
 </template>
 
 <script>
 import ServiceBar from "../components/ServiceBar";
+import Modal from "../components/Modal";
 import {swiper, swiperSlide} from 'vue-awesome-swiper';
 import 'swiper/dist/css/swiper.css'
 
 export default {
   name: "index",
-  components: {ServiceBar, swiper, swiperSlide},
+  components: {ServiceBar, swiper, swiperSlide, Modal},
   data() {
     return {
       swiperOption: {
@@ -184,17 +197,36 @@ export default {
           img: '/imgs/ads/ads-4.jpg'
         },
       ],
-      phoneList: [[1, 1, 1, 1], [1, 1, 1, 1]]
+      phoneList: [[1, 1, 1, 1], [1, 1, 1, 1]],
+      showModal: false
     }
   },
-  methods:{
-    init(){
-      this.$axios.get('/products',{params:{
-          categoryId:100012,
-          pageSize:8
-        }}).then((res) => {
-          this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
+  methods: {
+    init() {
+      this.$axios.get('/products', {
+        params: {
+          categoryId: 100012,
+          pageSize: 14
+        }
+      }).then((res) => {
+        res.list = res.list.slice(6, 14);
+        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
       });
+    },
+    addCart() {
+      this.showModal = true;
+      return
+      /*this.$axios.post('/carts',{
+        productId : id,
+        selected:true
+      }).then((res)=>{
+
+      }).catch(()=>{
+
+      });*/
+    },
+    goToCart() {
+      this.$router.push('/cart');
     }
   },
   mounted() {
@@ -204,9 +236,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import './../assets/scss/mixin.scss';
 @import './../assets/scss/config.scss';
-@import "../assets/scss/base.scss";
+@import './../assets/scss/mixin.scss';
 
 .index {
   .swiper-box {
@@ -358,16 +389,18 @@ export default {
             text-align: center;
 
             span {
-              display :inline-block;
+              display: inline-block;
               width: 67px;
               height: 24px;
               font-size: 14px;
               line-height: 24px;
               color: $colorG;
-              &.new-pro{
+
+              &.new-pro {
                 background-color: #7ECF68;
               }
-              &.kill-pro{
+
+              &.kill-pro {
                 background-color: #E82626;
               }
 

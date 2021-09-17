@@ -310,7 +310,7 @@ export default {
             height: 0;
             opacity: 0;
             width: 1226px;
-            z-index: 10;
+            z-index: 9;
             overflow: hidden;
             border-top: 1px solid #E5E5E5;
             box-shadow: 0px  7px 6px 0px rgba(0,0,0,0.11);
