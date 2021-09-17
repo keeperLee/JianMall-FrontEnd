@@ -67,14 +67,14 @@
           <div class="list-box">
             <div class="list" v-for="(arr,i) in phoneList" :key="i">
               <div class="item" v-for="(item,j) in arr" :key="j">
-                <span>新品</span>
+                <span :class="{'new-pro':j%2==0}">新品</span>
                 <div class="item-img">
-                  <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6f2493e6c6fe8e2485c407e5d75e3651.jpg" alt="">
+                  <img :src="item.mainImage" alt="">
                 </div>
                 <div class="item-info">
-                  <h3>小米9</h3>
-                  <p>晓龙855,索尼4800万超广角微距</p>
-                  <p class="price">2999元</p>
+                  <h3>{{item.name}}</h3>
+                  <p>{{item.subtitle}}</p>
+                  <p class="price">{{item.price}}元</p>
                 </div>
               </div>
             </div>
@@ -186,6 +186,19 @@ export default {
       ],
       phoneList: [[1, 1, 1, 1], [1, 1, 1, 1]]
     }
+  },
+  methods:{
+    init(){
+      this.$axios.get('/products',{params:{
+          categoryId:100012,
+          pageSize:8
+        }}).then((res) => {
+          this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
+      });
+    }
+  },
+  mounted() {
+    this.init();
   }
 }
 </script>
@@ -345,11 +358,24 @@ export default {
             text-align: center;
 
             span {
+              display :inline-block;
+              width: 67px;
+              height: 24px;
+              font-size: 14px;
+              line-height: 24px;
+              color: $colorG;
+              &.new-pro{
+                background-color: #7ECF68;
+              }
+              &.kill-pro{
+                background-color: #E82626;
+              }
 
             }
 
             .item-img {
               img {
+                width: 100%;
                 height: 195px;
               }
             }
