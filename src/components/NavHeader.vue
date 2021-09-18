@@ -106,7 +106,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                      <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                     </div>
                     <div class="pro-name">小米壁画电视 65英寸</div>
                     <div class="pro-price">6999元</div>
@@ -115,7 +115,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="/imgs/nav-img/nav-3-2.jpg" alt="">
+                      <img v-lazy="'/imgs/nav-img/nav-3-2.jpg'" alt="">
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799元</div>
@@ -124,7 +124,7 @@
                 <li class="product">
                   <a href="" target="_blank">
                     <div class="pro-img">
-                      <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                      <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                     </div>
                     <div class="pro-name">小米CC9</div>
                     <div class="pro-price">1799元</div>
@@ -310,7 +310,7 @@ export default {
             height: 0;
             opacity: 0;
             width: 1226px;
-            z-index: 9;
+            z-index: 10;
             overflow: hidden;
             border-top: 1px solid #E5E5E5;
             box-shadow: 0px  7px 6px 0px rgba(0,0,0,0.11);
