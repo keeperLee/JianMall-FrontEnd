@@ -17,6 +17,8 @@ export default {
     }
   },
   mounted() {
+    this.getUser();
+    this.getCartCount();
     // storage.setItem("abcd",0,"user");
     // storage.clear("user");
     // 本地加载请求静态json文件的形式
@@ -24,9 +26,21 @@ export default {
     //   this.res = res;
     // });
     //通过easymock平台
-    this.$axios.get('/user/login').then(res=>{
-      this.res = res;
-    });
+    // this.$axios.get('/user/login').then(res=>{
+    //   this.res = res;
+    // });
+  },
+  methods:{
+    getUser(){
+      this.$axios.get('/user').then(()=>{
+        // to-do 保存到vuex里面
+      })
+    },
+    getCartCount(){
+      this.$axios.get('/carts/products/sum').then(()=>{
+        // to-do 保存到vuex里面
+      })
+    }
   }
 }
 </script>
