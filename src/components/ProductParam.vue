@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar" :class="{'is_fixed':isFixed}">
     <div class="container">
       <div class="pro-title">
         小米8
@@ -15,7 +15,24 @@
 </template>
 <script>
 export default{
-  name:'ProductParam'
+  name:'ProductParam',
+  data(){
+    return  {
+      isFixed: false
+    }
+  },mounted() {
+    window.addEventListener('scroll',this.initHeight);
+  },
+  methods:{
+    initHeight(){
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop ;
+      this.isFixed = scrollTop > 152 ;
+    }
+
+  },
+  destroyed(){
+    window.removeEventListener('scroll',this.initHeight,false)
+  }
 }
 </script>
 <style lang="scss">
@@ -25,6 +42,12 @@ export default{
   height:70px;
   line-height:70px;
   border:1px solid $colorH;
+  &.is_fixed{
+    position:fixed;
+    top:0;
+    width:100%;
+    box-shadow: 0 5px 5px $colorE;
+  }
   .container{
     @include flex();
     .pro-title{
