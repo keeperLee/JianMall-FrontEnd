@@ -16,5 +16,11 @@ location /api/ {
 线上nginx配置的时候，代理域名后面需要加/,这样在请求的时候会去掉/api，否则请求的时候会包含/api
 
 ## 申请加入蓝湖查看小米商城设计稿
-在问答区或者课程qq群里进行申请，并附上邮箱地址，前提是必须注册蓝湖帐号
+邮箱：sunnyboysoft@163.com
+发送内容：我是慕课小米商城课程同学，申请查看蓝湖权限，并提供邮箱
 
+## swiper中文文档
+https://www.swiper.com.cn/
+
+## Css3动画库
+https://daneden.github.io/animate.css/
